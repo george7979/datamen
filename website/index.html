@@ -13,6 +13,20 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://datemen.net/">
     
+    <!-- Content Security Policy for XSS protection -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com https://www.googletagmanager.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data: https:;
+        connect-src 'self' https://wa.me;
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+        upgrade-insecure-requests;
+    ">
+    
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Datamen - Dedykowane Rozwiązania Storage">
     <meta property="og:description" content="Infrastruktura IT szyta na miarę. Optymalne koszty przy lepszej wydajności.">
@@ -463,9 +477,10 @@
                 </div>
                 <div class="cta-form" data-aos="fade-left">
                     <form id="contactForm" class="contact-form">
-                        <!-- Honeypot for spam protection -->
-                        <div class="honey" aria-hidden="true">
-                            <input type="text" name="website" tabindex="-1" autocomplete="off">
+                        <!-- Anti-spam fields (do not remove) -->
+                        <div class="field-validation" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+                            <input type="text" name="company_url" tabindex="-1" autocomplete="off">
+                            <input type="email" name="backup_email" tabindex="-1" autocomplete="off">
                         </div>
                         
                         <div class="form-group">
@@ -564,8 +579,8 @@
         <div class="cookie-content">
             <p><span data-translate="cookie.message">Używamy plików cookie, aby poprawić Twoje doświadczenia. Kontynuując, zgadzasz się z naszą</span> <a href="/privacy" data-translate="cookie.privacyPolicy">Polityką Prywatności</a>.</p>
             <div class="cookie-buttons">
-                <button class="btn btn-secondary btn-sm" onclick="rejectCookies()" data-translate="cookie.reject">Odrzuć</button>
-                <button class="btn btn-primary btn-sm" onclick="acceptCookies()" data-translate="cookie.accept">Akceptuj</button>
+                <button class="btn btn-secondary btn-sm" id="rejectCookiesBtn" data-translate="cookie.reject">Odrzuć</button>
+                <button class="btn btn-primary btn-sm" id="acceptCookiesBtn" data-translate="cookie.accept">Akceptuj</button>
             </div>
         </div>
     </div>

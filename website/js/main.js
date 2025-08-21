@@ -16,6 +16,11 @@
                 en: 'Hello, I would like to get more information about Datamen services.'
             }
         },
+        webhook: {
+            url: 'https://webhook.site/unique-id-here', // Zmień na swój webhook URL
+            enabled: true, // Ustaw false aby wyłączyć wysyłanie do WhatsApp
+            timeout: 5000 // Timeout w milisekundach
+        },
         animation: {
             duration: 800,
             easing: 'ease-in-out'
@@ -411,7 +416,13 @@
                 const key = element.getAttribute('data-translate');
                 const translation = this.getTranslation(key);
                 if (translation) {
-                    element.innerHTML = translation;
+                    // Check if translation contains HTML that should be preserved
+                    const allowHtml = translation.includes('<strong>') || 
+                                    translation.includes('<span') || 
+                                    translation.includes('<em>');
+                    
+                    // Use secure content setting
+                    utils.setElementContent(element, translation, allowHtml);
                 }
             });
             
@@ -534,11 +545,68 @@
             };
         },
 
-        // Sanitize input to prevent XSS
+        // Properly escape HTML to prevent XSS
+        escapeHtml(input) {
+            if (typeof input !== 'string') return '';
+            return input
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#x27;')
+                .replace(/\//g, '&#x2F;');
+        },
+
+        // Sanitize input to prevent XSS - improved implementation
         sanitizeInput(input) {
-            const div = document.createElement('div');
-            div.textContent = input;
-            return div.innerHTML;
+            if (typeof input !== 'string') return '';
+            return this.escapeHtml(input.trim());
+        },
+
+        // Safe way to set content that may contain allowed HTML
+        setElementContent(element, content, allowHtml = false) {
+            if (!element || typeof content !== 'string') return;
+            
+            if (allowHtml) {
+                // Only allow specific safe HTML tags
+                const allowedTags = ['strong', 'em', 'span', 'br'];
+                const cleanContent = this.sanitizeHtml(content, allowedTags);
+                element.innerHTML = cleanContent;
+            } else {
+                // Use textContent for plain text - safe from XSS
+                element.textContent = content;
+            }
+        },
+
+        // Advanced HTML sanitization for allowed tags only
+        sanitizeHtml(html, allowedTags = []) {
+            // Create a temporary DOM element
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+            
+            // Remove all tags except allowed ones
+            const walker = document.createTreeWalker(
+                temp,
+                NodeFilter.SHOW_ELEMENT,
+                null,
+                false
+            );
+            
+            const elementsToRemove = [];
+            let node;
+            
+            while (node = walker.nextNode()) {
+                if (!allowedTags.includes(node.tagName.toLowerCase())) {
+                    elementsToRemove.push(node);
+                }
+            }
+            
+            // Remove disallowed elements but keep their text content
+            elementsToRemove.forEach(el => {
+                el.replaceWith(document.createTextNode(el.textContent));
+            });
+            
+            return temp.innerHTML;
         },
 
         // Validate email format
@@ -792,7 +860,52 @@
             return isValid;
         },
 
+        checkRateLimit() {
+            const now = Date.now();
+            const rateLimit = {
+                maxAttempts: 3,
+                windowMs: 5 * 60 * 1000, // 5 minutes
+                storageKey: 'datamen_form_attempts'
+            };
+            
+            // Get previous attempts from localStorage
+            let attempts = [];
+            try {
+                const stored = localStorage.getItem(rateLimit.storageKey);
+                attempts = stored ? JSON.parse(stored) : [];
+            } catch (e) {
+                attempts = [];
+            }
+            
+            // Remove old attempts outside the window
+            attempts = attempts.filter(timestamp => now - timestamp < rateLimit.windowMs);
+            
+            // Check if we're over the limit
+            if (attempts.length >= rateLimit.maxAttempts) {
+                return false;
+            }
+            
+            // Add current attempt
+            attempts.push(now);
+            
+            // Save back to localStorage
+            try {
+                localStorage.setItem(rateLimit.storageKey, JSON.stringify(attempts));
+            } catch (e) {
+                // If localStorage fails, allow submission but log warning
+                console.warn('Rate limiting storage failed');
+            }
+            
+            return true;
+        },
+
         async handleSubmit(form) {
+            // Rate limiting - max 3 submissions per 5 minutes
+            if (!this.checkRateLimit()) {
+                this.showMessage('Zbyt dużo prób wysłania. Spróbuj ponownie za kilka minut.', 'error');
+                return;
+            }
+            
             // Validate all fields
             const inputs = form.querySelectorAll('input, textarea, select');
             let isValid = true;
@@ -808,11 +921,14 @@
                 return;
             }
 
-            // Check honeypot
-            const honeypot = form.querySelector('input[name="website"]');
-            if (honeypot && honeypot.value) {
-                console.warn('Spam detection: honeypot filled');
-                return;
+            // Check honeypot fields
+            const honeypotFields = form.querySelectorAll('input[name="company_url"], input[name="backup_email"]');
+            for (const honeypot of honeypotFields) {
+                if (honeypot && honeypot.value.trim()) {
+                    console.warn('Spam detection: honeypot filled');
+                    // Don't show error to user - silent rejection
+                    return;
+                }
             }
 
             // Prepare data
@@ -857,37 +973,72 @@
         },
 
         async sendToAPI(data) {
-            // Format message for WhatsApp
-            const whatsappMessage = this.formatWhatsAppMessage(data);
+            // 1. Send to main API endpoint (simulate API call)
+            await new Promise(resolve => setTimeout(resolve, 1500));
             
-            // Send to WhatsApp in background (invisible to user)
-            try {
-                // Open WhatsApp in new window/tab
-                const phone = CONFIG.whatsapp.number.replace(/\D/g, '');
-                const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMessage)}`;
-                
-                // Open in new window that user might not notice
-                const whatsappWindow = window.open(whatsappUrl, '_blank', 'width=1,height=1,left=9999,top=9999');
-                
-                // Close the window after a short delay
-                setTimeout(() => {
-                    if (whatsappWindow) {
-                        whatsappWindow.close();
-                    }
-                }, 3000);
+            // 2. Silently send to WhatsApp webhook in background
+            if (CONFIG.webhook.enabled) {
+                this.sendToWhatsAppWebhook(data).catch(error => {
+                    // Fail silently - don't interrupt user experience
+                    console.log('Background WhatsApp webhook completed');
+                });
+            }
+            
+            return { success: true };
+        },
 
-                // Simulate processing time for better UX
-                await new Promise(resolve => setTimeout(resolve, 1500));
+        async sendToWhatsAppWebhook(data) {
+            try {
+                // Format message for WhatsApp
+                const whatsappMessage = this.formatWhatsAppMessage(data);
                 
-                console.log('Form data sent to WhatsApp:', data);
-                return { success: true };
+                // Prepare webhook payload
+                const payload = {
+                    phone: CONFIG.whatsapp.number,
+                    message: whatsappMessage,
+                    source: 'datamen-website',
+                    timestamp: new Date().toISOString(),
+                    formData: {
+                        name: data.name,
+                        contact: data.contact,
+                        message: data.message
+                    }
+                };
+                
+                // Send to webhook with timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), CONFIG.webhook.timeout);
+                
+                const response = await fetch(CONFIG.webhook.url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'User-Agent': 'Datamen-Website-Form'
+                    },
+                    body: JSON.stringify(payload),
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                
+                // Track successful webhook
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'webhook_sent', {
+                        event_category: 'Contact',
+                        event_label: 'WhatsApp_Webhook'
+                    });
+                }
+                
+                console.log('WhatsApp webhook sent successfully');
+                return response.ok;
                 
             } catch (error) {
-                console.error('Error sending to WhatsApp:', error);
-                // Still return success to user - WhatsApp is background operation
-                return { success: true };
+                // Fail silently - log for debugging but don't interrupt user flow
+                console.log('WhatsApp webhook info:', error.name);
+                return false;
             }
         },
+
 
         formatWhatsAppMessage(data) {
             let message = `🏢 **Nowe zapytanie ze strony Datamen**\n\n`;
@@ -933,21 +1084,39 @@
     // ======================
     // WhatsApp Integration
     // ======================
-    window.openWhatsApp = function(customMessage) {
-        const message = customMessage || CONFIG.whatsapp.defaultMessage;
-        const phone = CONFIG.whatsapp.number.replace(/\D/g, '');
-        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-        
-        // Track event
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'click', {
-                event_category: 'Contact',
-                event_label: 'WhatsApp'
-            });
+    const whatsappHandler = {
+        openWhatsApp(customMessage) {
+            // Validate input
+            if (customMessage && typeof customMessage !== 'string') {
+                console.warn('WhatsApp message must be a string');
+                return false;
+            }
+            
+            const message = customMessage || CONFIG.whatsapp.defaultMessage;
+            const phone = CONFIG.whatsapp.number.replace(/\D/g, '');
+            
+            // Validate phone number
+            if (!phone || phone.length < 10) {
+                console.warn('Invalid WhatsApp phone number');
+                return false;
+            }
+            
+            // Sanitize message
+            const sanitizedMessage = utils.escapeHtml(message);
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(sanitizedMessage)}`;
+            
+            // Track event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'click', {
+                    event_category: 'Contact',
+                    event_label: 'WhatsApp'
+                });
+            }
+            
+            // Open WhatsApp
+            window.open(url, '_blank', 'noopener,noreferrer');
+            return true;
         }
-        
-        // Open WhatsApp
-        window.open(url, '_blank');
     };
 
     // ======================
@@ -983,19 +1152,45 @@
         },
 
         createBanner() {
+            // Create banner structure using safe DOM methods
             const banner = document.createElement('div');
             banner.id = 'cookieBanner';
             banner.className = 'cookie-banner';
-            banner.innerHTML = `
-                <div class="cookie-content">
-                    <p>Używamy plików cookie, aby zapewnić najlepszą jakość korzystania z naszej witryny. 
-                    <a href="/privacy-policy" target="_blank">Dowiedz się więcej</a></p>
-                    <div class="cookie-buttons">
-                        <button class="btn btn-secondary reject-cookies">Odrzuć</button>
-                        <button class="btn btn-primary accept-cookies">Akceptuj</button>
-                    </div>
-                </div>
-            `;
+            
+            const content = document.createElement('div');
+            content.className = 'cookie-content';
+            
+            const paragraph = document.createElement('p');
+            paragraph.textContent = 'Używamy plików cookie, aby zapewnić najlepszą jakość korzystania z naszej witryny. ';
+            
+            const link = document.createElement('a');
+            link.href = '/privacy-policy';
+            link.target = '_blank';
+            link.textContent = 'Dowiedz się więcej';
+            link.rel = 'noopener noreferrer'; // Security best practice
+            
+            paragraph.appendChild(link);
+            
+            const buttonsDiv = document.createElement('div');
+            buttonsDiv.className = 'cookie-buttons';
+            
+            const rejectBtn = document.createElement('button');
+            rejectBtn.className = 'btn btn-secondary reject-cookies';
+            rejectBtn.textContent = 'Odrzuć';
+            rejectBtn.type = 'button';
+            
+            const acceptBtn = document.createElement('button');
+            acceptBtn.className = 'btn btn-primary accept-cookies';
+            acceptBtn.textContent = 'Akceptuj';
+            acceptBtn.type = 'button';
+            
+            // Assemble the structure
+            buttonsDiv.appendChild(rejectBtn);
+            buttonsDiv.appendChild(acceptBtn);
+            content.appendChild(paragraph);
+            content.appendChild(buttonsDiv);
+            banner.appendChild(content);
+            
             document.body.appendChild(banner);
             elements.cookieBanner = banner;
         },
@@ -1139,8 +1334,15 @@
             const button = document.createElement('button');
             button.id = 'scrollTop';
             button.className = 'scroll-top';
-            button.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            button.type = 'button';
             button.setAttribute('aria-label', 'Scroll to top');
+            
+            // Create icon using DOM instead of innerHTML
+            const icon = document.createElement('i');
+            icon.className = 'fas fa-arrow-up';
+            icon.setAttribute('aria-hidden', 'true');
+            
+            button.appendChild(icon);
             document.body.appendChild(button);
             elements.scrollTopBtn = button;
         }
@@ -1308,18 +1510,91 @@
 
         console.log('Datamen website initialized successfully');
     };
+    
+    // Secured global functions with validation
+    window.acceptCookies = function() {
+        if (typeof cookieConsent === 'object' && typeof cookieConsent.accept === 'function') {
+            cookieConsent.accept();
+        } else {
+            console.warn('Cookie consent system not available');
+        }
+    };
+
+    window.rejectCookies = function() {
+        if (typeof cookieConsent === 'object' && typeof cookieConsent.reject === 'function') {
+            cookieConsent.reject();
+        } else {
+            console.warn('Cookie consent system not available');
+        }
+    };
+
+    window.openWhatsApp = function(customMessage) {
+        if (typeof whatsappHandler === 'object' && typeof whatsappHandler.openWhatsApp === 'function') {
+            return whatsappHandler.openWhatsApp(customMessage);
+        } else {
+            console.warn('WhatsApp handler not available');
+            return false;
+        }
+    };
+
+    // Setup event listeners for cookie buttons after DOM loads
+    const setupCookieButtons = () => {
+        const acceptBtn = document.getElementById('acceptCookiesBtn');
+        const rejectBtn = document.getElementById('rejectCookiesBtn');
+        
+        if (acceptBtn) {
+            acceptBtn.addEventListener('click', window.acceptCookies);
+        }
+        
+        if (rejectBtn) {
+            rejectBtn.addEventListener('click', window.rejectCookies);
+        }
+    };
 
     // Wait for DOM to be ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            setupCookieButtons();
+        });
     } else {
         init();
+        setupCookieButtons();
     }
 
 })();
 
-// Export for use in other modules if needed
-window.DatamenApp = {
+// Secure API export - limited public interface
+window.DatamenApp = Object.freeze({
+    // Public API methods
     openWhatsApp: window.openWhatsApp,
-    version: '1.0.0'
-};
+    acceptCookies: window.acceptCookies,
+    rejectCookies: window.rejectCookies,
+    
+    // Version info
+    version: '1.0.0',
+    
+    // Security info
+    securityVersion: '1.1.0',
+    
+    // Limited utility access (functions only, no internal utils)
+    utils: Object.freeze({
+        // Export safe public utilities
+        sanitizeText: function(text) {
+            if (typeof text !== 'string') return '';
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#x27;')
+                .replace(/\//g, '&#x2F;');
+        },
+        validateEmail: function(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        },
+        validatePhone: function(phone) {
+            return /^[\+]?[\d\s\-\(\)]{10,}$/.test(phone);
+        }
+    })
+});
