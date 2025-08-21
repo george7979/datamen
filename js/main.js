@@ -153,7 +153,22 @@
             },
             recommendations: {
                 tag: 'Rekomendacje',
-                title: 'Co mówią o nas nasi klienci'
+                title: 'Co mówią o nas nasi klienci',
+                testimonial1: {
+                    quote: 'Zespół Datamen podszedł do naszego projektu z pełnym profesjonalizmem. Infrastruktura, którą zaprojektowali, znacząco przyspieszyła nasze procesy produkcyjne.',
+                    author: 'Dyrektor Techniczny',
+                    company: 'Studio postprodukcyjne'
+                },
+                testimonial2: {
+                    quote: 'Indywidualne podejście i zrozumienie naszych potrzeb. Nie próbowali sprzedać nam gotowego rozwiązania, tylko rzeczywiście zaprojektowali system pod nasze wymagania.',
+                    author: 'Head of Operations',
+                    company: 'Firma produkcyjna'
+                },
+                testimonial3: {
+                    quote: 'Wsparcie techniczne na najwyższym poziomie. Bezpośredni kontakt z inżynierami, którzy znają nasz system na wylot. Nie ma tutaj żadnych call center.',
+                    author: 'CTO',
+                    company: 'Agencja kreatywna'
+                }
             },
             contact: {
                 title: 'Gotowy na infrastrukturę, która napędzi Twój biznes?',
@@ -313,7 +328,22 @@
             },
             recommendations: {
                 tag: 'Testimonials',
-                title: 'What our clients say about us'
+                title: 'What our clients say about us',
+                testimonial1: {
+                    quote: 'The Datamen team approached our project with complete professionalism. The infrastructure they designed significantly accelerated our production processes.',
+                    author: 'Technical Director',
+                    company: 'Post-production studio'
+                },
+                testimonial2: {
+                    quote: 'Individual approach and understanding of our needs. They didn\'t try to sell us a ready-made solution, but actually designed a system tailored to our requirements.',
+                    author: 'Head of Operations',
+                    company: 'Production company'
+                },
+                testimonial3: {
+                    quote: 'Technical support at the highest level. Direct contact with engineers who know our system inside out. There are no call centers here.',
+                    author: 'CTO',
+                    company: 'Creative agency'
+                }
             },
             contact: {
                 title: 'Ready for infrastructure that will power your business?',
