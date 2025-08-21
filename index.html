@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Datamen - Dedykowane Serwery i Rozwiązania Storage dla Twojego Biznesu</title>
+    <meta name="description" content="Projektujemy infrastrukturę IT dopasowaną do Twoich potrzeb. Znaczne oszczędności, gwarancja niezawodności. Obsługujemy klientów w Polsce i Europie z siedzibą w Warszawie.">
+    <meta name="keywords" content="serwery dedykowane, storage, infrastruktura IT, postprodukcja, CCTV, monitoring, datacenter, Warszawa, Polska, Europa">
+    <meta name="author" content="Datamen">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://datemen.net/">
+    
+    <!-- Content Security Policy for XSS protection -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com https://www.googletagmanager.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data: https:;
+        connect-src 'self' https://wa.me;
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+        upgrade-insecure-requests;
+    ">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Datamen - Dedykowane Rozwiązania Storage">
+    <meta property="og:description" content="Infrastruktura IT szyta na miarę. Optymalne koszty przy lepszej wydajności.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://datemen.net/">
+    <meta property="og:image" content="https://datemen.net/images/og-image.jpg">
+    <meta property="og:site_name" content="Datamen">
+    <meta property="og:locale" content="pl_PL">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Datamen - Dedykowane Rozwiązania Storage">
+    <meta name="twitter:description" content="Infrastruktura IT szyta na miarę. Optymalne rozwiązania.">
+    <meta name="twitter:image" content="https://datemen.net/images/twitter-card.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Datamen",
+        "description": "Dedykowane serwery i rozwiązania storage dla biznesu",
+        "url": "https://datemen.net",
+        "logo": "https://datemen.net/images/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+48-XXX-XXX-XXX",
+            "contactType": "sales",
+            "availableLanguage": ["Polish", "English"]
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#home" class="logo">
+                    <span class="logo-text">Datamen</span>
+                </a>
+                <div class="nav-menu" id="navMenu">
+                    <a href="#about" class="nav-link" data-translate="nav.about">O nas</a>
+                    <a href="#services" class="nav-link" data-translate="nav.services">Usługi</a>
+                    <a href="#why-us" class="nav-link" data-translate="nav.whyUs">Dlaczego my</a>
+                    <a href="#process" class="nav-link" data-translate="nav.process">Proces</a>
+                    <a href="#recommendations" class="nav-link" data-translate="nav.recommendations">Rekomendacje</a>
+                    <a href="#contact" class="nav-link nav-cta" data-translate="nav.contact">Kontakt</a>
+                </div>
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="pl">PL</button>
+                    <span class="lang-separator">|</span>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title" data-translate="hero.title">
+                    Dedykowane Serwery i Rozwiązania <span class="gradient-text">Storage</span> 
+                    dla Twojego Biznesu
+                </h1>
+                <p class="hero-subtitle" data-translate="hero.subtitle">
+                    Nie oferujemy gotowych „pudełek". Projektujemy infrastrukturę IT dopasowaną 
+                    do Twoich realnych potrzeb - ze <strong>znacznymi oszczędnościami</strong> i gwarancją niezawodności.
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">
+                        <span data-translate="hero.ctaPrimary">Zapytaj o wycenę</span>
+                        <svg class="btn-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#recommendations" class="btn btn-secondary">
+                        <span data-translate="hero.ctaSecondary">Zobacz rekomendacje</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-indicator">
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-translate="about.tag">O nas</span>
+                <h2 class="section-title" data-translate="about.title">Specjaliści od infrastruktury, która napędza Twój biznes</h2>
+                <p class="section-subtitle" data-translate="about.subtitle">
+                    Jesteśmy zespołem inżynierów i architektów IT, którzy wierzą, że każdy biznes 
+                    zasługuje na infrastrukturę zaprojektowaną specjalnie dla niego.
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-grid" data-aos="fade-up" data-aos-delay="100">
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="8" y="8" width="32" height="32" rx="2"/>
+                                <path d="M16 24h16M24 16v16"/>
+                            </svg>
+                        </div>
+                        <h3 data-translate="about.card1.title">Projektowanie wysokowydajnych systemów</h3>
+                        <p data-translate="about.card1.desc">Systemy dla produkcji 4K/8K, rendering farms, AI/ML workloads</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="24" cy="24" r="16"/>
+                                <path d="M24 16v8l4 4"/>
+                            </svg>
+                        </div>
+                        <h3 data-translate="about.card2.title">Storage od 100TB do 10PB</h3>
+                        <p data-translate="about.card2.desc">Skalowalne rozwiązania storage dla każdej wielkości biznesu</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 24V8h24v16M12 24l12 12 12-12"/>
+                            </svg>
+                        </div>
+                        <h3 data-translate="about.card3.title">Optymalizacja workflow</h3>
+                        <p data-translate="about.card3.desc">Integracja z DaVinci Resolve, Adobe CC, Avid i innymi narzędziami</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-translate="services.tag">Nasze usługi</span>
+                <h2 class="section-title" data-translate="services.title">Rozwiązania dopasowane do Twojej branży</h2>
+            </div>
+            <div class="services-grid" data-aos="fade-up" data-aos-delay="100">
+                <!-- Service 1: Post-production -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="12" y="16" width="40" height="32" rx="2"/>
+                            <path d="M20 24l16 8-16 8V24z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title" data-translate="services.postprod.title">Studia Postprodukcyjne</h3>
+                    <p class="service-desc" data-translate="services.postprod.desc">
+                        Infrastruktura dla produkcji 4K/8K. Obsługujemy studia pracujące dla Netflix, HBO, Canal+.
+                    </p>
+                    <ul class="service-features">
+                        <li data-translate="services.postprod.feature1">Storage dla produkcji 4K/6K/8K</li>
+                        <li data-translate="services.postprod.feature2">Rendering i color grading</li>
+                        <li data-translate="services.postprod.feature3">Współpraca zespołowa w czasie rzeczywistym</li>
+                        <li data-translate="services.postprod.feature4">Automatyczna archiwizacja</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span data-translate="services.postprod.link">Dowiedz się więcej</span>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service 2: CCTV -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="32" cy="24" r="12"/>
+                            <path d="M32 36v12M20 48h24"/>
+                            <circle cx="32" cy="24" r="4"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title" data-translate="services.cctv.title">Systemy CCTV i Security</h3>
+                    <p class="service-desc" data-translate="services.cctv.desc">
+                        Storage zgodny z wymogami prawnymi dla monitoringu wysokiej rozdzielczości.
+                    </p>
+                    <ul class="service-features">
+                        <li data-translate="services.cctv.feature1">Obsługa 100+ kamer 4K/8K</li>
+                        <li data-translate="services.cctv.feature2">Retencja 30-90 dni</li>
+                        <li data-translate="services.cctv.feature3">Redundancja i backup</li>
+                        <li data-translate="services.cctv.feature4">Integracja z VMS</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span data-translate="services.cctv.link">Dowiedz się więcej</span>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-translate="whyUs.tag">Dlaczego Datamen</span>
+                <h2 class="section-title" data-translate="whyUs.title">Twój partner technologiczny, nie tylko dostawca</h2>
+            </div>
+            <div class="benefits-grid" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <div class="icon-bg"></div>
+                        <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8v8l4 4"/>
+                            <circle cx="16" cy="16" r="14"/>
+                        </svg>
+                    </div>
+                    <h4 data-translate="whyUs.benefit1.title">Indywidualne podejście</h4>
+                    <p data-translate="whyUs.benefit1.desc">Analizujemy Twój workflow przed projektem. Żadnych gotowych konfiguracji.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <div class="icon-bg"></div>
+                        <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M2 12h20"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                    </div>
+                    <h4 data-translate="whyUs.benefit2.title">Znaczne oszczędności</h4>
+                    <p data-translate="whyUs.benefit2.desc">Precyzyjny dobór komponentów bez przepłacania za niewykorzystane zasoby.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <div class="icon-bg"></div>
+                        <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 2l4 4-8 8-4-4z"/>
+                            <path d="M22 10v12H10V10"/>
+                        </svg>
+                    </div>
+                    <h4 data-translate="whyUs.benefit3.title">Wsparcie ekspertów</h4>
+                    <p data-translate="whyUs.benefit3.desc">Bezpośredni kontakt z inżynierami. Szybki czas odpowiedzi.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <div class="icon-bg"></div>
+                        <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 16s2-8 12-8 12 8 12 8-2 8-12 8-12-8-12-8z"/>
+                            <circle cx="16" cy="16" r="4"/>
+                        </svg>
+                    </div>
+                    <h4 data-translate="whyUs.benefit4.title">Skalowalność</h4>
+                    <p data-translate="whyUs.benefit4.desc">Od 10TB do 10PB w ramach tego samego rozwiązania. Rośnij bez limitów.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <div class="icon-bg"></div>
+                        <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="8" width="24" height="16" rx="2"/>
+                            <path d="M8 8V4h16v4"/>
+                        </svg>
+                    </div>
+                    <h4 data-translate="whyUs.benefit5.title">Bezpieczeństwo</h4>
+                    <p data-translate="whyUs.benefit5.desc">Enterprise-grade komponenty, szyfrowanie AES-256, najwyższy poziom bezpieczeństwa.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <div class="icon-bg"></div>
+                        <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 2v14l6 6"/>
+                            <path d="M4 16h24"/>
+                        </svg>
+                    </div>
+                    <h4 data-translate="whyUs.benefit6.title">Szybkie wdrożenie</h4>
+                    <p data-translate="whyUs.benefit6.desc">Typowa implementacja w 2-4 tygodnie. Ekspresowa w 5-7 dni.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-translate="process.tag">Jak pracujemy</span>
+                <h2 class="section-title" data-translate="process.title">Od pomysłu do wdrożenia w 5 krokach</h2>
+            </div>
+            <div class="process-timeline" data-aos="fade-up" data-aos-delay="100">
+                <div class="timeline-line"></div>
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h4 data-translate="process.step1.title">Bezpłatna konsultacja</h4>
+                        <p data-translate="process.step1.desc">Analiza potrzeb i audyt obecnej infrastruktury</p>
+                        <span class="step-time" data-translate="process.step1.time">1-2 dni</span>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h4 data-translate="process.step2.title">Projekt rozwiązania</h4>
+                        <p data-translate="process.step2.desc">Szczegółowa architektura i wycena</p>
+                        <span class="step-time" data-translate="process.step2.time">3-5 dni</span>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h4 data-translate="process.step3.title">Proof of Concept</h4>
+                        <p data-translate="process.step3.desc">Testy wydajności z Twoimi danymi</p>
+                        <span class="step-time" data-translate="process.step3.time">5-10 dni</span>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h4 data-translate="process.step4.title">Wdrożenie</h4>
+                        <p data-translate="process.step4.desc">Instalacja, konfiguracja i migracja</p>
+                        <span class="step-time" data-translate="process.step4.time">2-4 tygodnie</span>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h4 data-translate="process.step5.title">Wsparcie i rozwój</h4>
+                        <p data-translate="process.step5.desc">Monitoring, optymalizacja, planowanie rozbudowy</p>
+                        <span class="step-time" data-translate="process.step5.time">Ongoing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations -->
+    <section class="recommendations" id="recommendations">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-translate="recommendations.tag">Rekomendacje</span>
+                <h2 class="section-title" data-translate="recommendations.title">Co mówią o nas nasi klienci</h2>
+            </div>
+            <div class="testimonials-grid" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                            <p>"Zespół Datamen podszedł do naszego projektu z pełnym profesjonalizmem. Infrastruktura, którą zaprojektowali, znacząco przyspieszyła nasze procesy produkcyjne."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Dyrektor Techniczny</strong>
+                            <span>Studio postprodukcyjne</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                            <p>"Indywidualne podejście i zrozumienie naszych potrzeb. Nie próbowali sprzedać nam gotowego rozwiązania, tylko rzeczywiście zaprojektowali system pod nasze wymagania."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Head of Operations</strong>
+                            <span>Firma produkcyjna</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                            <p>"Wsparcie techniczne na najwyższym poziomie. Bezpośredni kontakt z inżynierami, którzy znają nasz system na wylot. Nie ma tutaj żadnych call center."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>CTO</strong>
+                            <span>Agencja kreatywna</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section with Contact Form -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="cta-content" data-aos="fade-right">
+                    <h2 class="cta-title" data-translate="contact.title">Gotowy na infrastrukturę, która napędzi Twój biznes?</h2>
+                    <p class="cta-desc" data-translate="contact.desc">
+                        Skontaktuj się z nami, a przygotujemy dedykowane rozwiązanie dopasowane do Twoich potrzeb.
+                        Bezpłatna konsultacja i analiza w ciągu 24h.
+                    </p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 8l9 6 9-6M3 8v8a2 2 0 002 2h14a2 2 0 002-2V8M3 8l9-4 9 4"/>
+                            </svg>
+                            <a href="mailto:kontakt@datamen.net">kontakt@datamen.net</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 5a2 2 0 012-2h3l2 3h9a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/>
+                            </svg>
+                            <a href="tel:+48XXXXXXXXX">+48 XXX XXX XXX</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 8h2a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V10a2 2 0 012-2h2"/>
+                                <rect x="7" y="2" width="10" height="10" rx="1"/>
+                            </svg>
+                            <span data-translate="contact.location">Warszawa (siedziba) • Obsługujemy Polskę i Europę</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cta-form" data-aos="fade-left">
+                    <form id="contactForm" class="contact-form">
+                        <!-- Anti-spam fields (do not remove) -->
+                        <div class="field-validation" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+                            <input type="text" name="company_url" tabindex="-1" autocomplete="off">
+                            <input type="email" name="backup_email" tabindex="-1" autocomplete="off">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name" data-translate="contact.form.name">Imię i nazwisko *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                            <label for="contact" data-translate="contact.form.contact">Email lub telefon *</label>
+                            <input type="text" id="contact" name="contact" placeholder="email@example.com lub +48 XXX XXX XXX" data-translate-placeholder="contact.form.contactPlaceholder" required>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="message" data-translate="contact.form.message">Wiadomość *</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="consent" required>
+                                <span>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z <a href="/privacy">Polityką Prywatności</a></span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>Wyślij zapytanie</span>
+                            <svg class="btn-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        
+                    </form>
+                    <div class="form-success" id="formSuccess">
+                        <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="32" cy="32" r="30"/>
+                            <path d="M20 32l8 8 16-16"/>
+                        </svg>
+                        <h3>Dziękujemy za kontakt!</h3>
+                        <p>Odpowiemy w ciągu 24 godzin.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-text">Datamen</span>
+                    </div>
+                    <p class="footer-desc" data-translate="footer.description">
+                        Specjaliści od infrastruktury IT, którzy wierzą, że technologia powinna wspierać biznes, a nie go ograniczać.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 data-translate="footer.services.title">Usługi</h4>
+                        <ul>
+                            <li><a href="#services" data-translate="footer.services.postprod">Studia postprodukcyjne</a></li>
+                            <li><a href="#services" data-translate="footer.services.cctv">Systemy CCTV</a></li>
+                            <li><a href="#services" data-translate="footer.services.consulting">Konsulting IT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-translate="footer.company.title">Firma</h4>
+                        <ul>
+                            <li><a href="#about" data-translate="footer.company.about">O nas</a></li>
+                            <li><a href="#recommendations" data-translate="footer.company.recommendations">Rekomendacje</a></li>
+                            <li><a href="#process" data-translate="footer.company.process">Jak pracujemy</a></li>
+                            <li><a href="#contact" data-translate="footer.company.contact">Kontakt</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-translate="footer.legal.title">Prawne</h4>
+                        <ul>
+                            <li><a href="/privacy" data-translate="footer.legal.privacy">Polityka prywatności</a></li>
+                            <li><a href="/terms" data-translate="footer.legal.terms">Regulamin</a></li>
+                            <li><a href="/sla" data-translate="footer.legal.sla">SLA</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Datamen. <span data-translate="footer.copyright">Wszystkie prawa zastrzeżone.</span></p>
+                <p data-translate="footer.tagline">Projektujemy z 💙 dla Polski i Europy</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <p><span data-translate="cookie.message">Używamy plików cookie, aby poprawić Twoje doświadczenia. Kontynuując, zgadzasz się z naszą</span> <a href="/privacy" data-translate="cookie.privacyPolicy">Polityką Prywatności</a>.</p>
+            <div class="cookie-buttons">
+                <button class="btn btn-secondary btn-sm" id="rejectCookiesBtn" data-translate="cookie.reject">Odrzuć</button>
+                <button class="btn btn-primary btn-sm" id="acceptCookiesBtn" data-translate="cookie.accept">Akceptuj</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
