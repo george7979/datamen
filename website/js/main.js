@@ -8,6 +8,8 @@
     // ======================
     // Configuration
     // ======================
+    const DEBUG = false; // Set to true for development logging
+    
     const CONFIG = {
         whatsapp: {
             number: '+48555123456', // Numer WhatsApp Datamen
@@ -521,7 +523,7 @@
                 if (translation && translation[k]) {
                     translation = translation[k];
                 } else {
-                    console.warn(`Translation missing for key: ${key} in language: ${this.currentLanguage}`);
+                    if (DEBUG) console.warn(`Translation missing for key: ${key} in language: ${this.currentLanguage}`);
                     return null;
                 }
             }
@@ -1031,7 +1033,7 @@
                 localStorage.setItem(rateLimit.storageKey, JSON.stringify(attempts));
             } catch (e) {
                 // If localStorage fails, allow submission but log warning
-                console.warn('Rate limiting storage failed');
+                if (DEBUG) console.warn('Rate limiting storage failed');
             }
             
             return true;
@@ -1060,10 +1062,10 @@
             }
 
             // Check honeypot fields
-            const honeypotFields = form.querySelectorAll('input[name="company_url"], input[name="backup_email"]');
+            const honeypotFields = form.querySelectorAll('input[name="company_url"], input[name="backup_email"], input[name="website"]');
             for (const honeypot of honeypotFields) {
                 if (honeypot && honeypot.value.trim()) {
-                    console.warn('Spam detection: honeypot filled');
+                    if (DEBUG) console.warn('Spam detection: honeypot filled');
                     // Don't show error to user - silent rejection
                     return;
                 }
@@ -1102,7 +1104,7 @@
                     });
                 }
             } catch (error) {
-                console.error('Form submission error:', error);
+                if (DEBUG) console.error('Form submission error:', error);
                 this.showMessage('Wystąpił błąd. Proszę spróbować ponownie.', 'error');
             } finally {
                 submitBtn.disabled = false;
@@ -1118,7 +1120,7 @@
             if (CONFIG.webhook.enabled) {
                 this.sendToWhatsAppWebhook(data).catch(error => {
                     // Fail silently - don't interrupt user experience
-                    console.log('Background WhatsApp webhook completed');
+                    if (DEBUG) console.log('Background WhatsApp webhook completed');
                 });
             }
             
@@ -1167,12 +1169,12 @@
                     });
                 }
                 
-                console.log('WhatsApp webhook sent successfully');
+                if (DEBUG) console.log('WhatsApp webhook sent successfully');
                 return response.ok;
                 
             } catch (error) {
                 // Fail silently - log for debugging but don't interrupt user flow
-                console.log('WhatsApp webhook info:', error.name);
+                if (DEBUG) console.log('WhatsApp webhook info:', error.name);
                 return false;
             }
         },
@@ -1226,7 +1228,7 @@
         openWhatsApp(customMessage) {
             // Validate input
             if (customMessage && typeof customMessage !== 'string') {
-                console.warn('WhatsApp message must be a string');
+                if (DEBUG) console.warn('WhatsApp message must be a string');
                 return false;
             }
             
@@ -1235,7 +1237,7 @@
             
             // Validate phone number
             if (!phone || phone.length < 10) {
-                console.warn('Invalid WhatsApp phone number');
+                if (DEBUG) console.warn('Invalid WhatsApp phone number');
                 return false;
             }
             
@@ -1276,7 +1278,7 @@
 
         showBanner() {
             if (!elements.cookieConsent) {
-                console.warn('Cookie consent element not found');
+                if (DEBUG) console.warn('Cookie consent element not found');
                 return;
             }
             
@@ -1344,7 +1346,7 @@
 
         loadAnalytics() {
             // Load Google Analytics or other tracking scripts
-            console.log('Analytics enabled');
+            if (DEBUG) console.log('Analytics enabled');
             // Example:
             // const script = document.createElement('script');
             // script.src = 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID';
@@ -1577,7 +1579,7 @@
                     const connectTime = perfData.responseEnd - perfData.requestStart;
                     const renderTime = perfData.domComplete - perfData.domLoading;
 
-                    console.log('Performance Metrics:', {
+                    if (DEBUG) console.log('Performance Metrics:', {
                         pageLoadTime: pageLoadTime + 'ms',
                         connectTime: connectTime + 'ms',
                         renderTime: renderTime + 'ms'
@@ -1605,7 +1607,7 @@
                     const lcpObserver = new PerformanceObserver((list) => {
                         const entries = list.getEntries();
                         const lastEntry = entries[entries.length - 1];
-                        console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime);
+                        if (DEBUG) console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime);
                     });
                     lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
                 } catch (e) {
@@ -1642,12 +1644,12 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js')
-                    .then(reg => console.log('Service Worker registered'))
-                    .catch(err => console.log('Service Worker registration failed'));
+                    .then(reg => { if (DEBUG) console.log('Service Worker registered'); })
+                    .catch(err => { if (DEBUG) console.log('Service Worker registration failed'); });
             });
         }
 
-        console.log('Datamen website initialized successfully');
+        if (DEBUG) console.log('Datamen website initialized successfully');
     };
     
     // Secured global functions with validation
@@ -1655,7 +1657,7 @@
         if (typeof cookieConsent === 'object' && typeof cookieConsent.accept === 'function') {
             cookieConsent.accept();
         } else {
-            console.warn('Cookie consent system not available');
+            if (DEBUG) console.warn('Cookie consent system not available');
         }
     };
 
@@ -1663,7 +1665,7 @@
         if (typeof cookieConsent === 'object' && typeof cookieConsent.reject === 'function') {
             cookieConsent.reject();
         } else {
-            console.warn('Cookie consent system not available');
+            if (DEBUG) console.warn('Cookie consent system not available');
         }
     };
 
@@ -1671,7 +1673,7 @@
         if (typeof whatsappHandler === 'object' && typeof whatsappHandler.openWhatsApp === 'function') {
             return whatsappHandler.openWhatsApp(customMessage);
         } else {
-            console.warn('WhatsApp handler not available');
+            if (DEBUG) console.warn('WhatsApp handler not available');
             return false;
         }
     };
