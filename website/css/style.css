@@ -218,6 +218,43 @@ a:hover {
     color: var(--color-accent);
 }
 
+/* === HDD Activity LED === */
+.hdd-led {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #0095D5;
+    border-radius: 1px;
+    margin-right: 2px;
+    position: relative;
+    animation: hdd-activity 3s infinite ease-in-out;
+    box-shadow: 0 0 3px #0095D5;
+}
+
+/* Irregular HDD activity animation - simulates real disk behavior */
+@keyframes hdd-activity {
+    0% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    2% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
+    4% { opacity: 0.3; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    12% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    15% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
+    18% { opacity: 0.8; box-shadow: 0 0 6px #0095D5; }
+    22% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    35% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    38% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
+    40% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    42% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
+    45% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    65% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    68% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
+    72% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    85% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    88% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
+    91% { opacity: 0.5; box-shadow: 0 0 4px #0095D5; }
+    93% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    100% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+}
+
 .nav-menu {
     display: flex;
     align-items: center;
