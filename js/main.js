@@ -172,7 +172,7 @@
             },
             contact: {
                 title: 'Gotowy na infrastrukturę, która napędzi Twój biznes?',
-                desc: 'Skontaktuj się z nami, a przygotujemy dedykowane rozwiązanie dopasowane do Twoich potrzeb. Bezpłatna konsultacja i analiza w ciągu 24h.',
+                desc: 'Skontaktuj się z nami, a przygotujemy dedykowane rozwiązanie dopasowane do Twoich potrzeb. Kompleksowa analiza i bezpłatna konsultacja.',
                 location: 'Warszawa (siedziba) • Obsługujemy Polskę i Europę',
                 form: {
                     name: 'Imię i nazwisko',
@@ -347,7 +347,7 @@
             },
             contact: {
                 title: 'Ready for infrastructure that will power your business?',
-                desc: 'Contact us and we\'ll prepare a dedicated solution tailored to your needs. Free consultation and analysis within 24h.',
+                desc: 'Contact us and we\'ll prepare a dedicated solution tailored to your needs. Comprehensive analysis and free consultation.',
                 location: 'Warsaw (HQ) • Serving Poland & Europe',
                 form: {
                     name: 'Full name',
