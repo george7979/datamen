@@ -294,11 +294,12 @@ a:hover {
 /* === Hero Section === */
 .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: 75vh;
+    max-height: 80vh;
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding: var(--spacing-4xl) 0;
+    padding: var(--spacing-3xl) 0;
 }
 
 .hero-bg {
@@ -1630,6 +1631,12 @@ a:hover {
     }
     
     /* Hero */
+    .hero {
+        min-height: 85vh;
+        max-height: 90vh;
+        padding: var(--spacing-2xl) 0;
+    }
+    
     .hero-cta {
         flex-direction: column;
         width: 100%;
