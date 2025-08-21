@@ -519,9 +519,14 @@ a:hover {
 .scroll-indicator {
     width: 30px;
     height: 50px;
-    border: 2px solid var(--color-primary-dark);
+    border: 2px solid rgba(255, 255, 255, 0.7);
     border-radius: 25px;
     position: relative;
+    transition: border-color var(--transition-base);
+}
+
+.scroll-indicator:hover {
+    border-color: rgba(255, 255, 255, 1);
 }
 
 .scroll-indicator span {
@@ -1527,6 +1532,16 @@ a:hover {
     
     .nav-menu.active {
         right: 0;
+    }
+    
+    /* Fix: Ensure mobile menu text is always dark on white background */
+    .nav-menu.active .nav-link {
+        color: var(--color-text-primary) !important;
+    }
+    
+    .nav-menu.active .lang-btn,
+    .nav-menu.active .theme-toggle {
+        color: var(--color-text-secondary) !important;
     }
     
     .hamburger {
