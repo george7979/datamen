@@ -273,6 +273,24 @@ a:hover {
     border-radius: var(--radius-sm);
 }
 
+/* === Dynamic Navigation Colors === */
+/* Navigation inverted colors for dark backgrounds */
+.navbar-inverted .nav-link,
+.navbar-inverted .logo {
+    color: var(--color-text-white) !important;
+}
+
+.navbar-inverted .hamburger span {
+    background: var(--color-text-white);
+}
+
+/* Smooth transitions for color changes */
+.navbar .nav-link,
+.navbar .logo,
+.navbar .hamburger span {
+    transition: color var(--transition-base), background-color var(--transition-base);
+}
+
 /* === Hero Section === */
 .hero {
     position: relative;
@@ -290,6 +308,28 @@ a:hover {
     right: 0;
     bottom: 0;
     z-index: -1;
+    background-image: url('../images/servers.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Vignette effect for hero background */
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        rgba(10, 22, 40, 0.3) 60%,
+        rgba(10, 22, 40, 0.8) 100%
+    );
+    z-index: 1;
 }
 
 .hero-gradient {
@@ -298,8 +338,14 @@ a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--gradient-hero);
-    opacity: 0.05;
+    background: linear-gradient(
+        135deg,
+        rgba(10, 22, 40, 0.95) 0%,
+        rgba(10, 22, 40, 0.85) 40%,
+        rgba(0, 149, 213, 0.15) 100%
+    );
+    opacity: 1;
+    z-index: 2;
 }
 
 .hero-pattern {
@@ -312,35 +358,43 @@ a:hover {
         radial-gradient(circle at 20% 50%, var(--color-accent) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, var(--color-primary-light) 0%, transparent 50%),
         radial-gradient(circle at 40% 20%, var(--color-accent) 0%, transparent 50%);
-    opacity: 0.03;
+    opacity: 0.02;
+    z-index: 3;
 }
 
 .hero-content {
     text-align: center;
     max-width: 900px;
     margin: 0 auto;
+    position: relative;
+    z-index: 10;
 }
 
 .hero-title {
     font-size: clamp(2rem, 5vw, var(--font-size-6xl));
     font-weight: 800;
     margin-bottom: var(--spacing-xl);
-    color: var(--color-primary-dark);
+    color: var(--color-text-white);
     line-height: 1.1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .gradient-text {
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    /* Clean blue color matching TrueNAS brand and buttons */
+    color: #0095D5;
+    font-weight: 800;
+    /* Subtle glow effect for better visibility on dark backgrounds */
+    text-shadow: 0 0 20px rgba(0, 149, 213, 0.5),
+                 0 0 40px rgba(0, 149, 213, 0.3),
+                 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
     font-size: var(--font-size-xl);
-    color: var(--color-text-secondary);
+    color: var(--color-text-white);
     margin-bottom: var(--spacing-2xl);
     line-height: 1.6;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .hero-cta {
@@ -412,6 +466,21 @@ a:hover {
 .btn-secondary:hover {
     background: var(--color-primary-dark);
     color: var(--color-text-white);
+}
+
+/* Hero section buttons - always light on dark background */
+.hero .btn-secondary {
+    background: transparent;
+    color: var(--color-text-white);
+    border: 2px solid var(--color-text-white);
+    opacity: 0.9;
+}
+
+.hero .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-white);
+    border-color: var(--color-text-white);
+    opacity: 1;
 }
 
 .btn-icon {
@@ -612,6 +681,23 @@ a:hover {
     transform: rotate(360deg);
 }
 
+/* Theme toggle SVG icons */
+.theme-icon {
+    width: 20px;
+    height: 20px;
+    transition: all var(--transition-fast);
+    color: inherit;
+}
+
+.theme-toggle:hover .theme-icon {
+    color: var(--color-accent);
+}
+
+/* Ensure both icons animate together during rotation */
+.theme-toggle.rotating .theme-icon {
+    transform: rotate(360deg);
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .language-switcher {
@@ -627,6 +713,21 @@ a:hover {
     
     .nav-wrapper {
         flex-wrap: wrap;
+    }
+    
+    /* Mobile-optimized hero background */
+    .hero-bg {
+        background-attachment: scroll;
+        background-position: center top;
+    }
+    
+    .hero-bg::after {
+        background: radial-gradient(
+            ellipse at center,
+            transparent 0%,
+            rgba(10, 22, 40, 0.4) 50%,
+            rgba(10, 22, 40, 0.9) 100%
+        );
     }
 }
 

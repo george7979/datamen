@@ -582,9 +582,19 @@
         },
         
         updateThemeIcon() {
-            const themeIcon = document.querySelector('.theme-icon');
-            if (themeIcon) {
-                themeIcon.textContent = this.currentTheme === 'light' ? '🌙' : '☀️';
+            const moonIcon = document.querySelector('.moon-icon');
+            const sunIcon = document.querySelector('.sun-icon');
+            
+            if (moonIcon && sunIcon) {
+                if (this.currentTheme === 'light') {
+                    // Show moon icon for light mode (to switch to dark)
+                    moonIcon.style.display = 'block';
+                    sunIcon.style.display = 'none';
+                } else {
+                    // Show sun icon for dark mode (to switch to light)
+                    moonIcon.style.display = 'none';
+                    sunIcon.style.display = 'block';
+                }
             }
         },
         
@@ -745,6 +755,7 @@
             this.setupSmoothScroll();
             this.setupStickyNav();
             this.setupActiveLinks();
+            this.setupDynamicNavColors();
         },
 
         // Mobile menu toggle
@@ -862,6 +873,34 @@
             }, 100);
 
             window.addEventListener('scroll', handleScroll);
+        },
+
+        // Dynamic navigation colors based on background
+        setupDynamicNavColors() {
+            if (!elements.navbar) return;
+
+            const heroSection = document.querySelector('.hero');
+            if (!heroSection) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // When hero section is intersecting with navbar area
+                    if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+                        // Navbar is over dark background - make text light
+                        elements.navbar.classList.add('navbar-inverted');
+                    } else {
+                        // Navbar is over light background - make text dark
+                        elements.navbar.classList.remove('navbar-inverted');
+                    }
+                });
+            }, {
+                // Observer options
+                root: null, // viewport
+                rootMargin: '-80px 0px 0px 0px', // Account for navbar height
+                threshold: [0, 0.1, 0.5, 1] // Multiple thresholds for smoother transitions
+            });
+
+            observer.observe(heroSection);
         }
     };
 
