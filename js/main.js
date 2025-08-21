@@ -608,7 +608,7 @@
         navMenu: document.querySelector('.nav-menu'),
         navLinks: document.querySelectorAll('.nav-link'),
         contactForm: document.getElementById('contactForm'),
-        cookieBanner: document.getElementById('cookieBanner'),
+        cookieConsent: document.getElementById('cookieConsent'),
         scrollTopBtn: document.getElementById('scrollTop'),
         statsNumbers: document.querySelectorAll('.stat-number'),
         lazyImages: document.querySelectorAll('img[data-src]'),
@@ -1236,73 +1236,71 @@
         },
 
         showBanner() {
-            if (!elements.cookieBanner) {
-                this.createBanner();
+            if (!elements.cookieConsent) {
+                console.warn('Cookie consent element not found');
+                return;
             }
             
-            elements.cookieBanner.classList.add('show');
+            elements.cookieConsent.classList.add('show');
             
-            // Setup buttons
-            const acceptBtn = elements.cookieBanner.querySelector('.accept-cookies');
-            const rejectBtn = elements.cookieBanner.querySelector('.reject-cookies');
+            // Setup buttons - use existing HTML buttons
+            const acceptBtn = document.getElementById('acceptCookiesBtn');
+            const rejectBtn = document.getElementById('rejectCookiesBtn');
             
-            acceptBtn?.addEventListener('click', () => this.accept());
-            rejectBtn?.addEventListener('click', () => this.reject());
+            // Remove any existing listeners to prevent duplicates
+            acceptBtn?.removeEventListener('click', this.handleAccept);
+            rejectBtn?.removeEventListener('click', this.handleReject);
+            
+            // Add new listeners with bound context
+            this.handleAccept = this.handleAccept.bind(this);
+            this.handleReject = this.handleReject.bind(this);
+            
+            acceptBtn?.addEventListener('click', this.handleAccept);
+            rejectBtn?.addEventListener('click', this.handleReject);
         },
 
-        createBanner() {
-            // Create banner structure using safe DOM methods
-            const banner = document.createElement('div');
-            banner.id = 'cookieBanner';
-            banner.className = 'cookie-banner';
+        handleAccept(e) {
+            e.preventDefault();
+            e.stopPropagation();
             
-            const content = document.createElement('div');
-            content.className = 'cookie-content';
+            // Debounce to prevent multiple clicks
+            if (this.processing) return;
+            this.processing = true;
             
-            const paragraph = document.createElement('p');
-            paragraph.textContent = 'Używamy plików cookie, aby zapewnić najlepszą jakość korzystania z naszej witryny. ';
-            
-            const link = document.createElement('a');
-            link.href = '/privacy-policy';
-            link.target = '_blank';
-            link.textContent = 'Dowiedz się więcej';
-            link.rel = 'noopener noreferrer'; // Security best practice
-            
-            paragraph.appendChild(link);
-            
-            const buttonsDiv = document.createElement('div');
-            buttonsDiv.className = 'cookie-buttons';
-            
-            const rejectBtn = document.createElement('button');
-            rejectBtn.className = 'btn btn-secondary reject-cookies';
-            rejectBtn.textContent = 'Odrzuć';
-            rejectBtn.type = 'button';
-            
-            const acceptBtn = document.createElement('button');
-            acceptBtn.className = 'btn btn-primary accept-cookies';
-            acceptBtn.textContent = 'Akceptuj';
-            acceptBtn.type = 'button';
-            
-            // Assemble the structure
-            buttonsDiv.appendChild(rejectBtn);
-            buttonsDiv.appendChild(acceptBtn);
-            content.appendChild(paragraph);
-            content.appendChild(buttonsDiv);
-            banner.appendChild(content);
-            
-            document.body.appendChild(banner);
-            elements.cookieBanner = banner;
-        },
-
-        accept() {
             utils.setCookie('cookieConsent', 'accepted', 365);
-            elements.cookieBanner.classList.remove('show');
+            elements.cookieConsent.classList.remove('show');
             this.loadAnalytics();
+            
+            // Reset debounce after animation
+            setTimeout(() => {
+                this.processing = false;
+            }, 500);
+        },
+
+        handleReject(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Debounce to prevent multiple clicks
+            if (this.processing) return;
+            this.processing = true;
+            
+            utils.setCookie('cookieConsent', 'rejected', 365);
+            elements.cookieConsent.classList.remove('show');
+            
+            // Reset debounce after animation
+            setTimeout(() => {
+                this.processing = false;
+            }, 500);
+        },
+
+        // Legacy methods for backward compatibility
+        accept() {
+            this.handleAccept({ preventDefault: () => {}, stopPropagation: () => {} });
         },
 
         reject() {
-            utils.setCookie('cookieConsent', 'rejected', 365);
-            elements.cookieBanner.classList.remove('show');
+            this.handleReject({ preventDefault: () => {}, stopPropagation: () => {} });
         },
 
         loadAnalytics() {
@@ -1639,29 +1637,16 @@
         }
     };
 
-    // Setup event listeners for cookie buttons after DOM loads
-    const setupCookieButtons = () => {
-        const acceptBtn = document.getElementById('acceptCookiesBtn');
-        const rejectBtn = document.getElementById('rejectCookiesBtn');
-        
-        if (acceptBtn) {
-            acceptBtn.addEventListener('click', window.acceptCookies);
-        }
-        
-        if (rejectBtn) {
-            rejectBtn.addEventListener('click', window.rejectCookies);
-        }
-    };
+    // Note: Cookie button setup is now handled directly in cookieConsent.showBanner()
+    // to prevent duplicate event listeners and conflicts
 
     // Wait for DOM to be ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
             init();
-            setupCookieButtons();
         });
     } else {
         init();
-        setupCookieButtons();
     }
 
 })();

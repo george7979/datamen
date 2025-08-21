@@ -1360,11 +1360,21 @@ a:hover {
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-xl);
     z-index: var(--z-popover);
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100px);
+    transition: opacity var(--transition-base), 
+                visibility var(--transition-base), 
+                transform var(--transition-base);
+    /* Mobile touch optimizations */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .cookie-consent.show {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .cookie-content p {
@@ -1523,6 +1533,20 @@ a:hover {
     .cookie-consent {
         left: var(--spacing-md);
         right: var(--spacing-md);
+        bottom: var(--spacing-md);
+        padding: var(--spacing-lg);
+        max-width: none;
+    }
+    
+    .cookie-buttons {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .cookie-buttons .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px; /* Minimum touch target size */
     }
 }
 
