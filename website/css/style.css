@@ -1,7 +1,7 @@
 /* ===================================
    Datamen - Professional Landing Page
    Design: Modern, Minimalist, Glass Morphism
-   Colors: Navy Blue (#0A1628), Turquoise (#00D9FF)
+   Colors: Navy Blue (#0A1628), TrueNAS Blue (#0095D5)
    =================================== */
 
 /* === CSS Variables === */
@@ -9,8 +9,8 @@
     /* Colors */
     --color-primary-dark: #0A1628;
     --color-primary-light: #1E3A5F;
-    --color-accent: #00D9FF;
-    --color-accent-hover: #00B8E6;
+    --color-accent: #0095D5;
+    --color-accent-hover: #007AB3;
     --color-success: #00E676;
     --color-warning: #FFC107;
     --color-danger: #FF5252;
@@ -28,7 +28,7 @@
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-light) 100%);
     --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
-    --gradient-hero: linear-gradient(135deg, #0A1628 0%, #1E3A5F 50%, #00D9FF 100%);
+    --gradient-hero: linear-gradient(135deg, #0A1628 0%, #1E3A5F 50%, #0095D5 100%);
     
     /* Shadows */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -86,10 +86,10 @@
 /* === Dark Mode Variables === */
 :root[data-theme="dark"] {
     /* Dark Mode Colors */
-    --color-primary-dark: #00D9FF;
+    --color-primary-dark: #0095D5;
     --color-primary-light: #007A9A;
-    --color-accent: #00D9FF;
-    --color-accent-hover: #33E1FF;
+    --color-accent: #0095D5;
+    --color-accent-hover: #00A3E6;
     
     --color-text-primary: #E1E8ED;
     --color-text-secondary: #AAB8C2;
@@ -104,7 +104,7 @@
     /* Dark Mode Gradients */
     --gradient-primary: linear-gradient(135deg, #0F1419 0%, #1A1F26 100%);
     --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
-    --gradient-hero: linear-gradient(135deg, #0F1419 0%, #1A1F26 50%, #00D9FF 100%);
+    --gradient-hero: linear-gradient(135deg, #0F1419 0%, #1A1F26 50%, #0095D5 100%);
     
     /* Dark Mode Shadows */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -374,19 +374,19 @@ a:hover {
 .btn-primary {
     background: var(--gradient-accent);
     color: var(--color-text-white);
-    box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 149, 213, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 30px rgba(0, 217, 255, 0.4);
+    box-shadow: 0 6px 30px rgba(0, 149, 213, 0.4);
 }
 
 .btn-primary:active {
     transform: translateY(0);
     background: var(--gradient-accent);
     color: var(--color-text-white);
-    box-shadow: 0 2px 15px rgba(0, 217, 255, 0.4);
+    box-shadow: 0 2px 15px rgba(0, 149, 213, 0.4);
 }
 
 .btn-primary:focus {
@@ -529,7 +529,7 @@ a:hover {
 .section-tag {
     display: inline-block;
     padding: var(--spacing-xs) var(--spacing-lg);
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(0, 149, 213, 0.1);
     color: var(--color-accent);
     border-radius: var(--radius-full);
     font-size: var(--font-size-sm);
@@ -576,7 +576,7 @@ a:hover {
 
 .lang-btn.active {
     color: var(--color-accent);
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(0, 149, 213, 0.1);
 }
 
 .lang-separator {
@@ -604,7 +604,7 @@ a:hover {
 
 .theme-toggle:hover {
     color: var(--color-accent);
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(0, 149, 213, 0.1);
     transform: rotate(180deg);
 }
 
@@ -752,7 +752,7 @@ a:hover {
 .service-icon {
     width: 80px;
     height: 80px;
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(0, 149, 213, 0.1);
     border-radius: var(--radius-xl);
     display: flex;
     align-items: center;
@@ -867,7 +867,7 @@ a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(0, 149, 213, 0.1);
     border-radius: var(--radius-xl);
     transform: rotate(45deg);
     transition: transform var(--transition-base);
@@ -973,7 +973,7 @@ a:hover {
 .step-time {
     display: inline-block;
     padding: var(--spacing-xs) var(--spacing-md);
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(0, 149, 213, 0.1);
     color: var(--color-accent);
     border-radius: var(--radius-full);
     font-size: var(--font-size-sm);
@@ -1013,7 +1013,7 @@ a:hover {
 .case-industry {
     display: inline-block;
     padding: var(--spacing-xs) var(--spacing-md);
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(0, 149, 213, 0.1);
     color: var(--color-accent);
     border-radius: var(--radius-full);
     font-size: var(--font-size-sm);
@@ -1159,7 +1159,7 @@ a:hover {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 149, 213, 0.1);
 }
 
 .form-group textarea {
@@ -1640,7 +1640,7 @@ a:hover {
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 3px solid rgba(0, 217, 255, 0.3);
+    border: 3px solid rgba(0, 149, 213, 0.3);
     border-radius: 50%;
     border-top-color: var(--color-accent);
     animation: spin 1s ease-in-out infinite;
@@ -1762,7 +1762,7 @@ select.error {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 149, 213, 0.3);
 }
 
 .scroll-top.show {
@@ -1772,7 +1772,7 @@ select.error {
 
 .scroll-top:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 217, 255, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 149, 213, 0.4);
 }
 
 /* ======================
@@ -1849,7 +1849,7 @@ button:disabled {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%2300D9FF\" fill-opacity=\"0.03\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"1\"%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%230095D5\" fill-opacity=\"0.03\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"1\"%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     opacity: 0.5;
 }
 
@@ -1864,7 +1864,7 @@ button:disabled {
 .testimonial-card {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 217, 255, 0.1);
+    border: 1px solid rgba(0, 149, 213, 0.1);
     border-radius: 16px;
     padding: 2rem;
     transition: all 0.3s ease;
@@ -1878,7 +1878,7 @@ button:disabled {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 217, 255, 0.05));
+    background: linear-gradient(135deg, rgba(0, 149, 213, 0.1), rgba(0, 149, 213, 0.05));
     border-radius: 16px;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -1887,8 +1887,8 @@ button:disabled {
 
 .testimonial-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(0, 217, 255, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
+    border-color: rgba(0, 149, 213, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 149, 213, 0.1);
 }
 
 .testimonial-card:hover::before {
