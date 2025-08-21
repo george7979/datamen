@@ -83,6 +83,37 @@
     --z-tooltip: 1070;
 }
 
+/* === Dark Mode Variables === */
+:root[data-theme="dark"] {
+    /* Dark Mode Colors */
+    --color-primary-dark: #00D9FF;
+    --color-primary-light: #007A9A;
+    --color-accent: #00D9FF;
+    --color-accent-hover: #33E1FF;
+    
+    --color-text-primary: #E1E8ED;
+    --color-text-secondary: #AAB8C2;
+    --color-text-light: #6B7280;
+    --color-text-white: #FFFFFF;
+    
+    --color-bg-primary: #0F1419;
+    --color-bg-secondary: #1A1F26;
+    --color-bg-tertiary: #252B33;
+    --color-bg-glass: rgba(15, 20, 25, 0.85);
+    
+    /* Dark Mode Gradients */
+    --gradient-primary: linear-gradient(135deg, #0F1419 0%, #1A1F26 100%);
+    --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+    --gradient-hero: linear-gradient(135deg, #0F1419 0%, #1A1F26 50%, #00D9FF 100%);
+    
+    /* Dark Mode Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
 /* === Reset & Base Styles === */
 * {
     margin: 0;
@@ -104,6 +135,15 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* === Theme Transition === */
+* {
+    transition: background-color var(--transition-base), 
+                color var(--transition-base), 
+                border-color var(--transition-base), 
+                box-shadow var(--transition-base);
 }
 
 /* === Typography === */
@@ -519,12 +559,45 @@ a:hover {
     font-size: var(--font-size-sm);
 }
 
+/* === Theme Toggle === */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1.2rem;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    margin-left: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.theme-toggle:hover {
+    color: var(--color-accent);
+    background: rgba(0, 217, 255, 0.1);
+    transform: rotate(180deg);
+}
+
+.theme-toggle.rotating {
+    transform: rotate(360deg);
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .language-switcher {
         margin-left: 0;
         margin-top: var(--spacing-sm);
         order: -1;
+    }
+    
+    .theme-toggle {
+        margin-left: var(--spacing-sm);
+        margin-top: var(--spacing-sm);
     }
     
     .nav-wrapper {

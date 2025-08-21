@@ -17,7 +17,7 @@
             }
         },
         webhook: {
-            url: 'https://webhook.site/unique-id-here', // Zmień na swój webhook URL
+            url: 'https://api.datamen.net/webhook/contact', // Production webhook endpoint
             enabled: true, // Ustaw false aby wyłączyć wysyłanie do WhatsApp
             timeout: 5000 // Timeout w milisekundach
         },
@@ -177,7 +177,7 @@
                 form: {
                     name: 'Imię i nazwisko',
                     contact: 'Email lub telefon',
-                    contactPlaceholder: 'email@example.com lub +48 XXX XXX XXX',
+                    contactPlaceholder: 'jan.kowalski@firma.pl lub +48 123 456 789',
                     message: 'Wiadomość',
                     consent: 'Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z',
                     privacyPolicy: 'Polityką Prywatności',
@@ -352,7 +352,7 @@
                 form: {
                     name: 'Full name',
                     contact: 'Email or phone',
-                    contactPlaceholder: 'email@example.com or +48 XXX XXX XXX',
+                    contactPlaceholder: 'john.smith@company.com or +48 123 456 789',
                     message: 'Message',
                     consent: 'I consent to the processing of my personal data in accordance with the',
                     privacyPolicy: 'Privacy Policy',
@@ -527,6 +527,75 @@
             }
             
             return translation;
+        }
+    };
+
+    // ======================
+    // Theme Management
+    // ======================
+    const themeManager = {
+        currentTheme: 'light',
+        
+        init() {
+            this.loadThemePreference();
+            this.setupThemeToggle();
+            this.applyTheme();
+        },
+        
+        loadThemePreference() {
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('datamen-theme');
+            
+            // Check for system preference if no saved theme
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            this.currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+        },
+        
+        setupThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    this.toggleTheme();
+                });
+            }
+            
+            // Listen for system theme changes
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (!localStorage.getItem('datamen-theme')) {
+                    this.currentTheme = e.matches ? 'dark' : 'light';
+                    this.applyTheme();
+                }
+            });
+        },
+        
+        toggleTheme() {
+            this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+            localStorage.setItem('datamen-theme', this.currentTheme);
+            this.applyTheme();
+            this.animateToggle();
+        },
+        
+        applyTheme() {
+            document.documentElement.setAttribute('data-theme', this.currentTheme);
+            this.updateThemeIcon();
+        },
+        
+        updateThemeIcon() {
+            const themeIcon = document.querySelector('.theme-icon');
+            if (themeIcon) {
+                themeIcon.textContent = this.currentTheme === 'light' ? '🌙' : '☀️';
+            }
+        },
+        
+        animateToggle() {
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                toggle.classList.add('rotating');
+                setTimeout(() => {
+                    toggle.classList.remove('rotating');
+                }, 300);
+            }
         }
     };
 
@@ -1515,6 +1584,9 @@
     const init = () => {
         // Language initialization (must be first)
         languageManager.init();
+        
+        // Theme initialization (early for better UX)
+        themeManager.init();
         
         // Core functionality
         navigation.init();
