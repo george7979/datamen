@@ -365,6 +365,10 @@ a:hover {
     transition: all var(--transition-base);
     text-decoration: none;
     outline: none;
+    /* Mobile touch optimizations */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    touch-action: manipulation;
 }
 
 .btn-primary {
@@ -376,6 +380,27 @@ a:hover {
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 30px rgba(0, 217, 255, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    background: var(--gradient-accent);
+    color: var(--color-text-white);
+    box-shadow: 0 2px 15px rgba(0, 217, 255, 0.4);
+}
+
+.btn-primary:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    background: var(--gradient-accent);
+    color: var(--color-text-white);
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    background: var(--gradient-accent);
+    color: var(--color-text-white);
 }
 
 .btn-secondary {
