@@ -604,7 +604,7 @@
     // ======================
     const elements = {
         navbar: document.querySelector('.navbar'),
-        navToggle: document.querySelector('.nav-toggle'),
+        navToggle: document.getElementById('hamburger'),
         navMenu: document.querySelector('.nav-menu'),
         navLinks: document.querySelectorAll('.nav-link'),
         contactForm: document.getElementById('contactForm'),
