@@ -140,6 +140,40 @@ datamen/
 - Use `mcp__playwright__browser_snapshot` to verify content changes
 - Use `mcp__playwright__browser_take_screenshot` for visual documentation
 
+### Console Error Verification (MANDATORY)
+
+**Po każdej zmianie w kodzie strony OBOWIĄZKOWE jest sprawdzenie konsoli deweloperskiej przeglądarki w celu wykrycia błędów i ostrzeżeń.**
+
+#### Procedura sprawdzania konsoli:
+1. **Otwórz Developer Tools** (F12) w przeglądarce
+2. **Przejdź do zakładki Console**
+3. **Odśwież stronę** (Ctrl+F5) aby zobaczyć wszystkie komunikaty od początku ładowania
+4. **Sprawdź desktop widok** - zweryfikuj konsolę w pełnym widoku strony
+5. **Sprawdź mobilny widok** - zmień na mobile viewport (375x812) i ponownie sprawdź konsolę
+6. **Przetestuj funkcjonalność** - przełącz język, nawiguj po sekcjach, testuj formularze, przełącz theme (dark/light)
+
+#### Dopuszczalne komunikaty:
+- **Dozwolone ostrzeżenia**: Pochodzące od rozszerzeń przeglądarki (np. z pliku `content.js`)
+- **Informacje/debug**: Komunikaty informacyjne z bibliotek zewnętrznych
+
+#### NIEDOPUSZCZALNE błędy:
+- ❌ **404 errors** dla zasobów strony (CSS, JS, obrazy)
+- ❌ **JavaScript errors** w kodzie strony
+- ❌ **CSP violations** związane z Content Security Policy
+- ❌ **Network errors** dla krytycznych zasobów
+- ❌ **Failed to load resource** dla plików własnych
+
+#### W przypadku błędów:
+1. **Zidentyfikuj źródło** - czy błąd pochodzi z kodu strony czy rozszerzenia przeglądarki
+2. **Napraw błędy z kodu strony** przed zakończeniem zadania
+3. **Udokumentuj** rozwiązania w komentarzach do commitów
+4. **Zweryfikuj ponownie** po wprowadzeniu poprawek
+
+#### Narzędzia do weryfikacji:
+- **Playwright**: `mcp__playwright__browser_console_messages` - dla zautomatyzowanej weryfikacji
+- **Chrome DevTools**: Ręczna weryfikacja podczas developmentu
+- **Firefox DevTools**: Dodatkowa weryfikacja cross-browser
+
 ### Content Verification
 - [ ] Polish and English messaging is consistent
 - [ ] Technical terms are accurately translated
