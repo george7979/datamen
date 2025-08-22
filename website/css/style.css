@@ -225,34 +225,50 @@ a:hover {
     height: 6px;
     background-color: #0095D5;
     border-radius: 1px;
-    margin-right: 2px;
+    margin-right: 1px;
     position: relative;
-    animation: hdd-activity 3s infinite ease-in-out;
+    animation: hdd-activity 12s infinite ease-in-out;
     box-shadow: 0 0 3px #0095D5;
 }
 
-/* Irregular HDD activity animation - simulates real disk behavior */
+/* Realistic HDD activity animation - randomized timing, better visibility */
 @keyframes hdd-activity {
-    0% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    2% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
-    4% { opacity: 0.3; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    12% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    15% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
-    18% { opacity: 0.8; box-shadow: 0 0 6px #0095D5; }
-    22% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    35% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    38% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
-    40% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    42% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
-    45% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    65% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    68% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
-    72% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    85% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    88% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
-    91% { opacity: 0.5; box-shadow: 0 0 4px #0095D5; }
-    93% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
-    100% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    /* Long idle period with subtle variations */
+    0% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.4); }
+    12% { opacity: 0.5; box-shadow: 0 0 3px rgba(0, 149, 213, 0.5); }
+    25% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.4); }
+    29% { opacity: 0.3; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    
+    /* First random activity burst */
+    31% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
+    32% { opacity: 0.3; box-shadow: 0 0 4px rgba(0, 149, 213, 0.4); }
+    33% { opacity: 1; box-shadow: 0 0 10px #0095D5, 0 0 15px #0095D5; }
+    34% { opacity: 0.7; box-shadow: 0 0 6px #0095D5; }
+    36% { opacity: 1; box-shadow: 0 0 9px #0095D5, 0 0 13px #0095D5; }
+    37% { opacity: 0.2; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    39% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.4); }
+    
+    /* Variable idle period with micro-activities */
+    45% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.4); }
+    47% { opacity: 0.6; box-shadow: 0 0 4px rgba(0, 149, 213, 0.5); }
+    48% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.4); }
+    54% { opacity: 0.5; box-shadow: 0 0 3px rgba(0, 149, 213, 0.5); }
+    
+    /* Second random activity burst */
+    58% { opacity: 1; box-shadow: 0 0 8px #0095D5, 0 0 12px #0095D5; }
+    59% { opacity: 0.5; box-shadow: 0 0 5px #0095D5; }
+    61% { opacity: 1; box-shadow: 0 0 11px #0095D5, 0 0 16px #0095D5; }
+    62% { opacity: 0.3; box-shadow: 0 0 3px rgba(0, 149, 213, 0.3); }
+    
+    /* Random micro-burst */
+    72% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.4); }
+    74% { opacity: 0.8; box-shadow: 0 0 6px #0095D5; }
+    75% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.4); }
+    
+    /* Final idle variations */
+    85% { opacity: 0.5; box-shadow: 0 0 3px rgba(0, 149, 213, 0.5); }
+    92% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.4); }
+    100% { opacity: 0.4; box-shadow: 0 0 3px rgba(0, 149, 213, 0.4); }
 }
 
 .nav-menu {
