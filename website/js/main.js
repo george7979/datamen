@@ -52,7 +52,7 @@
                 contact: 'Kontakt'
             },
             hero: {
-                title: 'Dedykowane Serwery i Rozwiązania <span class="gradient-text">Storage</span> dla Twojego Biznesu',
+                title: 'Dedykowane Serwery i Rozwiązania <span class="gradient-text">Data Storage</span> dla Twojego Biznesu',
                 subtitle: 'Nie oferujemy gotowych „pudełek". Projektujemy infrastrukturę IT dopasowaną do Twoich realnych potrzeb - ze <strong>znacznymi oszczędnościami</strong> i gwarancją niezawodności.',
                 ctaPrimary: 'Zapytaj o wycenę',
                 ctaSecondary: 'Zobacz rekomendacje'
@@ -67,7 +67,7 @@
                 },
                 card2: {
                     title: 'Storage od 100TB do 10PB',
-                    desc: 'Skalowalne rozwiązania storage dla każdej wielkości biznesu'
+                    desc: 'Skalowalne rozwiązania data storage oparte na TrueNAS i ZFS dla każdej wielkości biznesu'
                 },
                 card3: {
                     title: 'Optymalizacja workflow',
@@ -79,19 +79,19 @@
                 title: 'Rozwiązania dopasowane do Twojej branży',
                 postprod: {
                     title: 'Studia Postprodukcyjne',
-                    desc: 'Infrastruktura dla produkcji 4K/8K. Obsługujemy studia pracujące dla Netflix, HBO, Canal+.',
-                    feature1: 'Storage dla produkcji 4K/6K/8K',
+                    desc: 'Infrastruktura oparta na TrueNAS dla produkcji 4K/8K. Obsługujemy studia pracujące dla Netflix, HBO, Canal+.',
+                    feature1: 'Storage ZFS dla produkcji 4K/6K/8K',
                     feature2: 'Rendering i color grading',
                     feature3: 'Współpraca zespołowa w czasie rzeczywistym',
-                    feature4: 'Automatyczna archiwizacja',
+                    feature4: 'Snapshoty ZFS i automatyczna archiwizacja',
                     link: 'Dowiedz się więcej'
                 },
                 cctv: {
                     title: 'Systemy CCTV i Security',
-                    desc: 'Storage zgodny z wymogami prawnymi dla monitoringu wysokiej rozdzielczości.',
+                    desc: 'Niezawodny storage TrueNAS z ZFS zgodny z wymogami prawnymi dla monitoringu wysokiej rozdzielczości.',
                     feature1: 'Obsługa 100+ kamer 4K/8K',
                     feature2: 'Retencja 30-90 dni',
-                    feature3: 'Redundancja i backup',
+                    feature3: 'Redundancja ZFS i replikacja TrueNAS',
                     feature4: 'Integracja z VMS',
                     link: 'Dowiedz się więcej'
                 }
@@ -116,8 +116,8 @@
                     desc: 'Od 10TB do 10PB w ramach tego samego rozwiązania. Rośnij bez limitów.'
                 },
                 benefit5: {
-                    title: 'Bezpieczeństwo',
-                    desc: 'Enterprise-grade komponenty, szyfrowanie AES-256, najwyższy poziom bezpieczeństwa.'
+                    title: 'TrueNAS z ZFS',
+                    desc: 'TrueNAS z ZFS - technologię tę doskonalimy od ponad dekady w najbardziej wymagających środowiskach produkcyjnych. Ochrona przed utratą danych, snapshoty, szyfrowanie AES-256.'
                 },
                 benefit6: {
                     title: 'Szybkie wdrożenie',
@@ -215,6 +215,12 @@
                 privacyPolicy: 'Polityką Prywatności',
                 accept: 'Akceptuj',
                 reject: 'Odrzuć'
+            },
+            trackRecord: {
+                years: 'Lat doświadczenia w branży',
+                projects: 'Zrealizowanych projektów',
+                companies: 'Obsługiwanych firm',
+                data: 'Zarządzanych danych'
             }
         },
         en: {
@@ -227,7 +233,7 @@
                 contact: 'Contact'
             },
             hero: {
-                title: 'Dedicated Servers and <span class="gradient-text">Storage</span> Solutions for Your Business',
+                title: 'Dedicated Servers and <span class="gradient-text">Data Storage</span> Solutions for Your Business',
                 subtitle: 'We don\'t offer ready-made "boxes". We design IT infrastructure tailored to your real needs - with <strong>significant savings</strong> and reliability guarantee.',
                 ctaPrimary: 'Get a Quote',
                 ctaSecondary: 'See Testimonials'
@@ -242,7 +248,7 @@
                 },
                 card2: {
                     title: 'Storage from 100TB to 10PB',
-                    desc: 'Scalable storage solutions for any business size'
+                    desc: 'Scalable data storage solutions based on TrueNAS and ZFS for any business size'
                 },
                 card3: {
                     title: 'Workflow optimization',
@@ -254,19 +260,19 @@
                 title: 'Solutions tailored to your industry',
                 postprod: {
                     title: 'Post-Production Studios',
-                    desc: 'Infrastructure for 4K/8K production. We serve studios working for Netflix, HBO, Canal+.',
-                    feature1: '4K/6K/8K production storage',
+                    desc: 'TrueNAS-based infrastructure for 4K/8K production. We serve studios working for Netflix, HBO, Canal+.',
+                    feature1: 'ZFS storage for 4K/6K/8K production',
                     feature2: 'Rendering and color grading',
                     feature3: 'Real-time team collaboration',
-                    feature4: 'Automatic archiving',
+                    feature4: 'ZFS snapshots and automatic archiving',
                     link: 'Learn more'
                 },
                 cctv: {
                     title: 'CCTV & Security Systems',
-                    desc: 'Storage compliant with legal requirements for high-resolution monitoring.',
+                    desc: 'Reliable TrueNAS storage with ZFS compliant with legal requirements for high-resolution monitoring.',
                     feature1: '100+ 4K/8K cameras support',
                     feature2: '30-90 days retention',
-                    feature3: 'Redundancy and backup',
+                    feature3: 'ZFS redundancy and TrueNAS replication',
                     feature4: 'VMS integration',
                     link: 'Learn more'
                 }
@@ -291,8 +297,8 @@
                     desc: 'From 10TB to 10PB within the same solution. Grow without limits.'
                 },
                 benefit5: {
-                    title: 'Security',
-                    desc: 'Enterprise-grade components, AES-256 encryption, highest security level.'
+                    title: 'TrueNAS with ZFS',
+                    desc: 'TrueNAS with ZFS - technology we\'ve been perfecting for over a decade in the most demanding production environments. Data integrity protection, snapshots, AES-256 encryption.'
                 },
                 benefit6: {
                     title: 'Fast deployment',
@@ -390,6 +396,12 @@
                 privacyPolicy: 'Privacy Policy',
                 accept: 'Accept',
                 reject: 'Reject'
+            },
+            trackRecord: {
+                years: 'Years of expertise',
+                projects: 'Completed projects',
+                companies: 'Companies served',
+                data: 'Data managed'
             }
         }
     };
@@ -501,13 +513,13 @@
             
             // Update meta tags based on language
             if (this.currentLanguage === 'en') {
-                document.title = 'Datamen - Dedicated Servers and Storage Solutions for Your Business';
+                document.title = 'Datamen - Dedicated Servers and Data Storage Solutions for Your Business';
                 const description = document.querySelector('meta[name="description"]');
                 if (description) {
                     description.content = 'We design IT infrastructure tailored to your needs. Significant savings, reliability guarantee. We serve post-production studios and CCTV companies in Warsaw.';
                 }
             } else {
-                document.title = 'Datamen - Dedykowane Serwery i Rozwiązania Storage dla Twojego Biznesu';
+                document.title = 'Datamen - Dedykowane Serwery i Rozwiązania Data Storage dla Twojego Biznesu';
                 const description = document.querySelector('meta[name="description"]');
                 if (description) {
                     description.content = 'Projektujemy infrastrukturę IT dopasowaną do Twoich potrzeb. Znaczne oszczędności, gwarancja niezawodności. Obsługujemy studia postprodukcyjne i firmy CCTV w Warszawie.';
@@ -1618,6 +1630,55 @@
     };
 
     // ======================
+    // Track Record Counters
+    // ======================
+    const trackRecordCounters = {
+        init() {
+            this.setupCounterAnimations();
+        },
+        
+        setupCounterAnimations() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            if (counters.length === 0) return;
+            
+            const observerOptions = {
+                threshold: 0.7,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.dataset.target);
+                        this.animateCounter(counter, target);
+                        counterObserver.unobserve(counter);
+                    }
+                });
+            }, observerOptions);
+            
+            counters.forEach(counter => {
+                counterObserver.observe(counter);
+            });
+        },
+        
+        animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 60; // 60 steps for smooth animation
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 25); // 25ms = ~40fps
+        }
+    };
+
+    // ======================
     // Initialize Everything
     // ======================
     const init = () => {
@@ -1636,6 +1697,7 @@
         animations.init();
         lazyLoader.init();
         accordion.init();
+        trackRecordCounters.init();
         
         // Performance
         performance.init();
