@@ -1515,10 +1515,12 @@ a:hover {
     left: var(--spacing-xl);
     right: var(--spacing-xl);
     max-width: 500px;
-    background: var(--color-bg-primary);
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 217, 255, 0.2);
     padding: var(--spacing-xl);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     z-index: var(--z-popover);
     opacity: 0;
     visibility: hidden;
@@ -1538,7 +1540,7 @@ a:hover {
 }
 
 .cookie-content p {
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: var(--spacing-lg);
     font-size: var(--font-size-sm);
 }
