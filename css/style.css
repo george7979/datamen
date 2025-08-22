@@ -1515,7 +1515,7 @@ a:hover {
     left: var(--spacing-xl);
     right: var(--spacing-xl);
     max-width: 500px;
-    background: rgba(10, 22, 40, 0.95);
+    background: rgba(10, 22, 40, 0.95) !important;
     backdrop-filter: blur(20px);
     border: 1px solid rgba(0, 217, 255, 0.2);
     padding: var(--spacing-xl);
@@ -1539,10 +1539,11 @@ a:hover {
     transform: translateY(0);
 }
 
-.cookie-content p {
-    color: rgba(255, 255, 255, 0.9);
+.cookie-consent .cookie-content p {
+    color: rgba(255, 255, 255, 0.9) !important;
     margin-bottom: var(--spacing-lg);
     font-size: var(--font-size-sm);
+    transition: none !important;
 }
 
 .cookie-buttons {
