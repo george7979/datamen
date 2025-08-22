@@ -211,15 +211,13 @@
                 }
             },
             cookie: {
-                message: 'Używamy plików cookie, aby poprawić Twoje doświadczenia. Kontynuując, zgadzasz się z naszą',
-                privacyPolicy: 'Polityką Prywatności',
+                message: 'Używamy plików cookie, aby poprawić Twoje doświadczenia na stronie.',
                 accept: 'Akceptuj',
                 reject: 'Odrzuć'
             },
             trackRecord: {
                 years: 'Lat doświadczenia w branży',
                 projects: 'Zrealizowanych projektów',
-                companies: 'Obsługiwanych firm',
                 data: 'Zarządzanych danych'
             }
         },
@@ -392,15 +390,13 @@
                 }
             },
             cookie: {
-                message: 'We use cookies to improve your experience. By continuing, you agree to our',
-                privacyPolicy: 'Privacy Policy',
+                message: 'We use cookies to improve your experience on our website.',
                 accept: 'Accept',
                 reject: 'Reject'
             },
             trackRecord: {
                 years: 'Years of expertise',
                 projects: 'Completed projects',
-                companies: 'Companies served',
                 data: 'Data managed'
             }
         }
